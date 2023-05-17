@@ -24,16 +24,24 @@ let injectFav = document.getElementById("inject");
 let favArr = [];
 let weatherArr = [];
 let searchedCity = "";
+// assign ids for future days
+let temp_min1 = document.getElementById("temp_min1");
+let temp_max1 = document.getElementById("temp_max1");
+let temp_min2 = document.getElementById("temp_min2");
+let temp_max2 = document.getElementById("temp_max2");
+let temp_min3 = document.getElementById("temp_min3");
+let temp_max3 = document.getElementById("temp_max3");
+let temp_min4 = document.getElementById("temp_min4");
+let temp_max4 = document.getElementById("temp_max4");
 //picInject1 - 4 for images according to future weather days
-let picInject1 = document.getElementById('picInject1');
-let picInject2 = document.getElementById('picInject2');
-let picInject3 = document.getElementById('picInject3');
-let picInject4 = document.getElementById('picInject4');
-
+let picInject1 = document.getElementById("picInject1");
+let picInject2 = document.getElementById("picInject2");
+let picInject3 = document.getElementById("picInject3");
+let picInject4 = document.getElementById("picInject4");
 
 let favData = JSON.parse(localStorage.getItem("favWeather"));
 console.log(favData);
-if (favData && favData != null) {
+if (favData && favData != null) {  // still not clear why we list favData 2ce here
   favArr = favData;
 
   for (let i = 0; i < favData.length; i++) {
@@ -106,7 +114,7 @@ favBtn.addEventListener("click", (e) => {
   let pTag = document.createElement("p");
   pTag.innerText = obj.name;
   pTag.addEventListener("click", (e) => {
-    fetchWeather(obj.url); //calling obj & url (line 42)
+    fetchWeather(obj.url); //calling obj & url (line 42- uh, 56 now???)
   });
 
   colDiv.appendChild(pTag); //pTag inside colDiv
@@ -130,6 +138,7 @@ fetchWeather(`${url_pt1}${city}${apiKey}${units}`);
 //create function to get weather data getWeather
 
 function getWeather(weatherData) {
+  // current day information
   weatherArr = [];
   weatherArr.push(weatherData);
   console.log(weatherData);
@@ -144,5 +153,12 @@ function getWeather(weatherData) {
   search.value; //take the value entered into the form for city/location
 
   //future 4 days information
-  
+  temp_min1.innerText = parseInt(weatherData.list[6].main.temp_min);
+  temp_max1.innerText = parseInt(weatherData.list[6].main.temp_max);
+  temp_min2.innerText = parseInt(weatherData.list[14].main.temp_min);
+  temp_max2.innerText = parseInt(weatherData.list[14].main.temp_max);
+  temp_min3.innerText = parseInt(weatherData.list[22].main.temp_min);
+  temp_max3.innerText = parseInt(weatherData.list[22].main.temp_max);
+  temp_min4.innerText = parseInt(weatherData.list[30].main.temp_min);
+  temp_max4.innerText = parseInt(weatherData.list[30].main.temp_max);
 }
