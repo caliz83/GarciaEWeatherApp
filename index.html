@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./CSS/style.css" />
+    <title>WeatherAPI</title>
+  </head>
+  <body id="pic">
+    <div class="container">
+      <div class="row">
+        <div class="col-6 d-flex justify-content-end pt-2">
+          <h1>CodeStack Weather</h1>
+        </div>
+        <div class="col-6 pt-3">
+          <input class="form-control-sm" type="text" id="search" />
+          <button class="btn btn-primary mx-3" id="btn">Search</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center pt-5">
+          <h2 id="place">Stockton, CA</h2>
+        </div>
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center">
+            <h2>Current</h2>
+          </div>
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+          <h3 id="temp">91</h3>
+        </div>
+        <div class="col-6 d-flex justify-content-end">
+          <h6>Low</h6>
+        </div>
+        <div class="col-6 d-flex justify-content-start">
+          <h6>High</h6>
+        </div>
+        <div class="col-6 d-flex justify-content-end">
+          <h6 id="temp_min">78</h6>
+        </div>
+        <div class="col-6 d-flex justify-content-start">
+          <h6 id="temp_max">99</h6>
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+          <h6>Feels Like</h6>
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+          <h6 id="feels_like">87</h6>
+        </div>
+        <div class="col-12 d-flex justify-content-center pt-5">
+          <h2>Wind</h2>
+        </div>
+
+        <div class="col-6 d-flex justify-content-end">
+          <h6>Speed</h6>
+        </div>
+        <div class="col-6 d-flex justify-content-start">
+          <h6>Degrees</h6>
+        </div>
+        <div class="col-6 d-flex justify-content-end">
+          <h6 id="speed">10</h6>
+        </div>
+        <div class="col-6 d-flex justify-content-start">
+          <h6 id="deg">300</h6>
+        </div>
+        <div class="row d-flex justify-content-center">
+          <!-- <div class="col-1">
+            <h2>Tomorrow</h2>
+            <h6>
+                fillermin temp
+            </h6> -->
+          <!-- <h6>
+                fillermax temp
+            </h6>
+        </div>
+        <div class="col-3">
+            <h2>+2 Days</h2>
+            <h6>
+                fillermin temp
+            </h6>
+            <h6>
+                fillermax temp
+            </h6>
+        </div>
+        <div class="col-3">
+            <h2>+3 Days</h2>
+            <h6> -->
+          <!-- fillermin temp
+            </h6>
+            <h6>
+                fillermax temp
+            </h6>
+        </div>
+        <div class="col-3">
+            <h2>+4 Days</h2>
+            <h6>
+                fillermin temp
+            </h6>
+            <h6>
+                fillermax temp
+            </h6>
+        </div> -->
+        <!-- Cards go here -->
+        <div class="row">
+            <div class="col">
+              <div class="card h-100">
+                <img id="picInject1" src="..." class="card-img-top d-flex justify-content-center" alt="..." />
+                <div class="card-body">
+                  <h5 class="card-title d-flex justify-content-center">Tomorrow</h5> 
+                  <!-- maybe try date_txt.innerText to get the dates (list 6-13)???? -->
+                  <div class="card-text">
+                      <div class="row">
+                          <div class="col">Low:</div>
+                          <div class="col">High:</div>
+                      </div>
+                      <div class="row">
+                          <div id="minTemp1" class="col">##</div>
+                          <div id="maxTemp1" class="col">##</div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100">
+                <img id="picInject2" src="..." class="card-img-top d-flex justify-content-center" alt="..." />
+                <div class="card-body">
+                  <h5 class="card-title d-flex justify-content-center">+2 Days</h5>
+                  <!-- date_text.innerText to get the date? (list 14-21) -->
+                  <div class="card-text">
+                      <div class="row">
+                          <div class="col">Low:</div>
+                          <div class="col">High:</div>
+                      </div>
+                      <div class="row">
+                          <div id="minTemp2" class="col">##</div>
+                          <div id="maxTemp2" class="col">##</div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100">
+                <img id="picInject3" src="..." class="card-img-top d-flex justify-content-center" alt="..." />
+                <div class="card-body">
+                  <h5 class="card-title d-flex justify-content-center">+3 Days</h5>
+                  <!-- list (22-29) -->
+                  <div class="card-text">
+                      <div class="row">
+                          <div class="col">Low:</div>
+                          <div class="col">High:</div>
+                      </div>
+                      <div class="row">
+                          <div id="minTemp3" class="col">##</div>
+                          <div id="maxTemp3" class="col">##</div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100">
+                <img id="picInject4" src="..." class="card-img-top d-flex justify-content-center" alt="..." />
+                <div class="card-body">
+                  <h5 class="card-title d-flex justify-content-center">+4 Days</h5>
+                  <!-- list(30-37) -->
+                  <div class="card-text">
+                      <div class="row">
+                          <div class="col">Low:</div>
+                          <div class="col">High:</div>
+                      </div>
+                      <div class="row">
+                          <div id="minTemp4" class="col">##</div>
+                          <div id="maxTemp4" class="col">##</div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <!-- cards end here -->
+        <!-- buttons go here -->
+        </div>
+        <div class="col-12 d-flex justify-content-center pt-4">
+          <button class="btn btn-primary" id="favBtn">Add to Favorites</button>
+        </div>
+        <div class="col-12 d-flex justify-content-center pt-4">
+          <button class="btn btn-danger" id="delBtn">Delete Favorites</button>
+        </div>
+        <!-- buttons end here -->
+        <!-- favorite cities injected here -->
+        <div id="inject"></div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+      crossorigin="anonymous"
+    ></script>
+    <script src="scripts/script.js"></script>
+  </body>
+</html>

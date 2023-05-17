@@ -1,0 +1,7 @@
+body {
+    background-color: #8c7878;
+}
+
+.card-body, .card-img-top {
+    background-color: #f6d7c5;
+}
