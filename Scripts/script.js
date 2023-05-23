@@ -7,6 +7,8 @@ let city = "Stockton";
 let apiKey = "&appid=84d3acb257fc5df5cbbfbff233c2e311"; //my personal API key
 let units = "&units=metric";
 let degSymbol = "&deg;C";
+let imgSrc_pt1 = "https://openweathermap.org/img/wn/";
+let imgSrc_pt2 = "@2x.png";
 
 //assign all of our id's & set to a variable
 let place = document.getElementById("place");
@@ -20,7 +22,7 @@ let search = document.getElementById("search");
 let btn = document.getElementById("btn");
 let favBtn = document.getElementById("favBtn");
 let delBtn = document.getElementById("delBtn");
-let injectFav = document.getElementById("inject");
+let injectFav = document.getElementById("injectFav");
 let favArr = [];
 let weatherArr = [];
 let searchedCity = "";
@@ -38,10 +40,12 @@ let picInject1 = document.getElementById("picInject1");
 let picInject2 = document.getElementById("picInject2");
 let picInject3 = document.getElementById("picInject3");
 let picInject4 = document.getElementById("picInject4");
+//let icon = data.list[0].weather[0].icon;
 
 let favData = JSON.parse(localStorage.getItem("favWeather"));
 console.log(favData);
-if (favData && favData != null) {  // still not clear why we list favData 2ce here
+if (favData && favData != null) {
+  // still not clear why we list favData 2ce here
   favArr = favData;
 
   for (let i = 0; i < favData.length; i++) {
@@ -51,9 +55,10 @@ if (favData && favData != null) {  // still not clear why we list favData 2ce he
       let colDiv = document.createElement("div");
       colDiv.classList = "col";
       let pTag = document.createElement("p");
-      pTag.innerText = favData[i].name;
+      pTag.innerText = favData[i].name; //*
+      console.log(favData);
       pTag.addEventListener("click", (e) => {
-        fetchWeather(favData[i].url);
+        fetchWeather(favData[i].url); //*
       });
 
       colDiv.appendChild(pTag);
@@ -103,7 +108,7 @@ delBtn.addEventListener("click", (e) => {
 //fav button event listener
 favBtn.addEventListener("click", (e) => {
   let obj = {
-    name: weatherArr[weatherArr.length - 1].name,
+    name: weatherArr[0].city.name,
     url: `${url_pt1}${searchedCity}${apiKey}${units}`,
   };
 
@@ -113,9 +118,11 @@ favBtn.addEventListener("click", (e) => {
   colDiv.classList = "col"; //add a column to the div
   let pTag = document.createElement("p");
   pTag.innerText = obj.name;
+  console.log(weatherArr);
   pTag.addEventListener("click", (e) => {
-    fetchWeather(obj.url); //calling obj & url (line 42- uh, 56 now???)
+    fetchWeather(obj.url); //calling obj & url (line 42- uh, 56 now??? keeps changing, but you get the idea)
   });
+  console.log('this works');
 
   colDiv.appendChild(pTag); //pTag inside colDiv
   injectFav.appendChild(colDiv); //colDiv inside injectFav
@@ -123,13 +130,14 @@ favBtn.addEventListener("click", (e) => {
   localStorage.setItem("favWeather", JSON.stringify(favArr)); //second part *MUST* be in JSON format
 });
 
-//create fetch function to get weather data from openweather api fetchWeather
+//fetch function to get weather data from openweather api fetchWeather
 function fetchWeather(url) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
       // console.log(data.name); //console logs the city
+
       getWeather(data);
     });
 }
@@ -161,4 +169,17 @@ function getWeather(weatherData) {
   temp_max3.innerText = parseInt(weatherData.list[22].main.temp_max);
   temp_min4.innerText = parseInt(weatherData.list[30].main.temp_min);
   temp_max4.innerText = parseInt(weatherData.list[30].main.temp_max);
+
+  let icon1 = weatherData.list[3].weather[0].icon;
+  let icon2 = weatherData.list[6].weather[0].icon;
+  let icon3 = weatherData.list[14].weather[0].icon;
+  let icon4 = weatherData.list[22].weather[0].icon;
+  console.log(icon1);
+  console.log(icon2);
+  console.log(icon3);
+  console.log(icon4);
+  picInject1.src = `${imgSrc_pt1}${icon1}${imgSrc_pt2}`;
+  picInject2.src = `${imgSrc_pt1}${icon2}${imgSrc_pt2}`;
+  picInject3.src = `${imgSrc_pt1}${icon3}${imgSrc_pt2}`;
+  picInject4.src = `${imgSrc_pt1}${icon4}${imgSrc_pt2}`;
 }
